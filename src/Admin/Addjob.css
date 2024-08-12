@@ -1,0 +1,73 @@
+.sun-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+}
+
+.sun-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sun-form-left {
+  padding: 20px;
+}
+
+.sun-form-left h2 {
+  margin-bottom: 20px;
+}
+
+.sun-form-left form {
+  display: grid;
+  gap: 15px;
+}
+
+.sun-form-left label {
+  display: flex;
+  flex-direction: column;
+}
+
+.sun-form-left input,
+.sun-form-left textarea {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.sun-form-left button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.sun-form-left button:hover {
+  background-color: #0056b3;
+}
+
+.sun-form-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+.sun-form-right img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

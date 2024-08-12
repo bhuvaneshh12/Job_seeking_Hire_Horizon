@@ -1,0 +1,39 @@
+.course-card {
+  position: relative;
+  width: 100%;
+  max-width: 250px; /* Adjust as needed */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  background-color: #fff; /* Ensure a background color for visibility */
+  text-align: center; /* Center text within the card */
+}
+
+.course-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.course-card img {
+  width: 100%;
+  height: 150px; /* Adjust height as needed */
+  object-fit: cover; /* Ensures the image covers the entire area */
+}
+
+.course-info {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.course-info h3 {
+  margin: 10px 0;
+  color: #1e90ff; /* Baby blue color for the course title */
+}
+
+.course-info p {
+  margin: 5px 0;
+}

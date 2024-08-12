@@ -1,0 +1,167 @@
+/* General styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Login container styles */
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #ffffff;
+    padding-top: 120px; /* Add padding to prevent content from being hidden behind the title */
+    position: relative; /* To ensure absolute positioning works inside it */
+  }
+  
+  /* Logo and name styles */
+  .logo-name-container {
+    position: absolute;
+    top: 20px; /* Adjust top positioning as needed */
+    left: 20px; /* Adjust left positioning as needed */
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-name-container img {
+    width: 50px; /* Adjust logo size as needed */
+    height: auto;
+    margin-right: 10px;
+  }
+  
+  .logo-name-container h1 {
+    font-size: 18px; /* Adjust font size as needed */
+    margin: 0;
+    color: #333; /* Adjust text color as needed */
+  }
+  
+  /* Background image styles */
+  .background-image {
+    position: absolute;
+    width: 1100px; /* Adjust the width as needed */
+    height: 600px;
+    background: url('img2.avif') no-repeat center center;
+    background-size: contain;
+    border-radius: 20px;
+    bottom: 100px; /* Adjust this to position the background image correctly */
+    margin-right: 400px;
+  }
+  
+  /* Login form styles */
+  .login-form {
+    background-color: #ffffff;
+    width: 330px;
+    height: 550px;
+    padding: 20px;
+    border-radius: 20px;
+    /* box-shadow:  10px  rgb(1, 0, 0); */
+    z-index: 10; /* Ensure the form is above the background image */
+    margin-left: auto; /* Adjust this if necessary */
+    margin-right: 150px; /* Move the form a bit to the right */
+    margin-bottom: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Space between form elements */
+  }
+  
+  /* Form header */
+  .login-form h2 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Form groups */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    margin-bottom: 5px;
+    display: block;
+    text-align: left;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  
+  /* Submit button */
+  .submit {
+    width: 200px;
+    padding: 10px;
+    background-color: #2b90ee;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center; /* Center the button text */
+    margin-top: 10px;
+    margin-left: 60px;
+  }
+  
+  .submit:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Forgot password link */
+  .forgot-password {
+    display: block;
+    margin: 10px 0;
+    color: #2b90ee;
+    /* text-align: center; */
+    text-decoration: none;
+    margin-left: 40px;
+  }
+  
+  .forgot-password:hover {
+    text-decoration: underline;
+  }
+  
+  /* Social icons styles */
+  .social-icons {
+    margin: 20px 0;
+    text-align: center;
+  }
+  
+  .social-icons img {
+    width: 30px;
+    margin: 0 8px;
+    box-shadow: 0 0 20px 0 #7f7f7f3d;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  
+  /* Error message styles */
+  .error-message {
+    color: red;
+    text-align: center; /* Center the error message */
+    margin-top: -10px; /* Adjust margin for better spacing */
+  }
+  
+  /* Links container */
+  .links-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .links-container p {
+    margin: 5px 0; /* Minimize the height between the links */
+    text-align: center;
+  }
+  
+  .switch-to-admin {
+    color: blueviolet; /* Change the text color of the admin link */
+    text-decoration: none;
+  }
+  
+  .switch-to-admin:hover {
+    text-decoration: underline;
+  }
+  

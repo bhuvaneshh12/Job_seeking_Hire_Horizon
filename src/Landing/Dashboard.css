@@ -1,0 +1,148 @@
+/* General Styles */
+.company-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.page-title {
+  margin-bottom: 20px;
+  font-size: 2em;
+  color: #333;
+}
+
+.company-list {
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 300px; /* Reduced width for the search bar */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-bar {
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #474646;
+  border-radius: 5px;
+}
+
+.search-icon {
+  margin-right: 8px;
+  color: #333;
+}
+
+.company-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between; /* Ensure 3 cards fit in a row */
+  height: 400px;
+}
+
+.company-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px;
+  width: calc(33.33% - 20px); /* Make sure 3 cards fit in one row */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.company-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.company-details {
+  text-align: center;
+}
+
+.company-rating {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.apply-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.apply-button:hover {
+  background-color: #0056b3;
+}
+
+/* Modal Styles */
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 80%;
+  max-width: 800px;
+  max-height: 70vh; /* Reduce the height of the modal */
+  overflow-y: auto; /* Add scroll if content exceeds height */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.application-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Reduced gap for tighter alignment */
+}
+
+.form-group {
+  flex: 1 1 calc(20% - 10px); /* 5 columns layout with gap included */
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 8px; /* Reduced padding for tighter spacing */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.submit-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+.submit-button:hover {
+  background-color: #218838;
+}

@@ -1,0 +1,172 @@
+/* src/components/CreateAccount.css */
+
+.create-account-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .form-container {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+  }
+  
+  .form-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-header h1 {
+    font-size: 24px;
+    color: #0077b5;
+  }
+  
+  .form-header h2 {
+    font-size: 20px;
+    margin: 10px 0;
+  }
+  
+  .account-type-toggle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .account-type-toggle button {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  
+  .account-type-toggle button.active {
+    background-color: #0077b5;
+    color: #fff;
+    border: none;
+    margin-left: 30px;
+  }
+  
+  .social-signup {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  .social-signup button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    color: white;
+  }
+  
+  .social-signup .linkedin {
+    background-color: #0077b5;
+  }
+  
+  .social-signup .google {
+    background-color: #db4437;
+  }
+  
+  .social-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .signup-form {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .create-account-btn {
+    background-color: #0077b5;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .create-account-btn:hover {
+    background-color: #005f8d;
+  }
+  
+  .login-link {
+    text-align: center;
+    margin-top: 20px;
+    margin-right: 90px;
+  }
+  
+  .login-link a {
+    color: #0077b5;
+    text-decoration: none;
+  }
+  
+  .login-link a:hover {
+    text-decoration: underline;
+  }
+  
+  .testimonial-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('./pic.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+  }
+/*   
+  .testimonial-content {
+    max-width: 400px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+  } */
+  
+  .testimonial-content p {
+    margin: 0 0 10px;
+  }
+  
+  .testimonial-content p:first-child {
+    font-size: 16px;
+    font-style: italic;
+  }
+  
+  .testimonial-content p:last-child {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  

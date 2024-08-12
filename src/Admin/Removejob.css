@@ -1,0 +1,44 @@
+/* RemoveJob.css */
+
+.remove-job-page {
+    padding: 20px;
+}
+
+.remove-job-container {
+    width: 900px;
+    margin: 0 auto;
+}
+
+.remove-job-list {
+    margin-top: 20px;
+}
+
+.remove-job-item {
+    display: flex;
+    justify-content: space-between; /* Align items to the left and right */
+    align-items: center; /* Center items vertically */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.remove-job-details {
+    flex: 1; /* Take up remaining space */
+    text-align: left; /* Align text to the left */
+}
+
+.remove-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 20px; /* Space between details and button */
+}
+
+.remove-button:hover {
+    background-color: #c0392b;
+}

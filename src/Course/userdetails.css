@@ -1,0 +1,47 @@
+.registration-page {
+    padding: 50px;
+    background-color: #f4f4f4;
+    text-align: center;
+  }
+  
+  .registration-page h1 {
+    margin-bottom: 20px;
+    color: #1e90ff;
+  }
+  
+  .registration-page form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .registration-page label {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  .registration-page input {
+    padding: 10px;
+    width: 100%;
+    max-width: 400px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .registration-page button {
+    background-color: #1e90ff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .registration-page button:hover {
+    background-color: #63b8ff;
+  }
+  
