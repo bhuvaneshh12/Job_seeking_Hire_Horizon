@@ -40,7 +40,7 @@ nav.neww-sidebar {
     top: 0;
     left: 0;
     height: 100%;
-    width: 250px;
+    width: 220px; /* Adjusted width */
     padding: 10px 14px;
     background: var(--sidebar-color);
     border-right: 1px solid rgba(0, 0, 0, 0.1);
@@ -61,7 +61,7 @@ nav.neww-sidebar .neww-logo-name {
 }
 
 nav.neww-sidebar .neww-logo-image img {
-    width: 50px;
+    width: 45px; /* Adjusted logo size */
     border-radius: 50%;
 }
 
@@ -91,7 +91,7 @@ nav.neww-sidebar .neww-menu-items li {
 nav.neww-sidebar .neww-menu-items li a {
     display: flex;
     align-items: center;
-    height: 60px;
+    height: 50px; /* Adjusted for better alignment */
     text-decoration: none;
     color: var(--text-color);
     padding: 0 20px;
@@ -182,9 +182,9 @@ body.neww-dark nav.neww-sidebar .neww-mode-toggle .neww-switch::before {
 
 /* Dashboard Styles */
 .neww-dashboard {
-    margin-left: 250px; /* Adjusted for open sidebar */
-    width: calc(100% - 250px);
-    padding: 10px 14px;
+    margin-left: 220px; /* Adjusted for open sidebar */
+    width: calc(100% - 220px);
+    padding: 20px 30px; /* Adjusted padding */
     transition: var(--tran-05);
     display: flex;
     flex-direction: column;
@@ -250,7 +250,7 @@ nav.neww-sidebar.neww-closed ~ .neww-dashboard {
     padding: 20px;
     background: var(--panel-color);
     border-radius: 10px;
-    margin: 10px 0;
+    margin-bottom: 20px; /* Add space between overview and other content */
 }
 
 .neww-dash-content .neww-overview .neww-title {
@@ -267,12 +267,15 @@ nav.neww-sidebar.neww-closed ~ .neww-dashboard {
 .neww-dash-content .neww-overview .neww-title .neww-text {
     font-size: 22px;
     font-weight: 600;
+    margin-left: 10px; /* Adjust space between icon and text */
 }
 
 .neww-dash-content .neww-boxes {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
+    gap: 20px; /* Add gap between boxes for a cleaner look */
+    flex-wrap: wrap; /* Wrap items on smaller screens */
 }
 
 .neww-dash-content .neww-boxes .neww-box {
@@ -282,68 +285,90 @@ nav.neww-sidebar.neww-closed ~ .neww-dashboard {
     justify-content: center;
     background: var(--box1-color);
     border-radius: 10px;
-    padding: 20px;
-    width: calc(33.33% - 10px);
+    padding: 30px; /* Increased padding inside the boxes */
+    width: calc(33.33% - 20px);
     color: #fff;
+    text-align: center;
 }
 
 .neww-dash-content .neww-boxes .neww-box i {
-    font-size: 40px;
-    margin-bottom: 10px;
-}
-
-.neww-dash-content .neww-boxes .neww-box .neww-text {
-    font-size: 18px;
-    margin-bottom: 5px;
+    font-size: 30px;
 }
 
 .neww-dash-content .neww-boxes .neww-box .neww-number {
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 600;
+    margin: 10px 0;
 }
 
+.neww-dash-content .neww-boxes .neww-box .neww-text {
+    font-size: 16px;
+}
+
+.neww-dash-content .neww-boxes .neww-box:nth-child(2) {
+    background: var(--box2-color);
+}
+
+.neww-dash-content .neww-boxes .neww-box:nth-child(3) {
+    background: var(--box3-color);
+}
+
+/* Recent Activity */
+.neww-activity {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between cards */
+}
+
+.neww-activity .neww-activity-data {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between data sections */
+}
+
+.neww-activity .neww-data {
+    background: var(--sidebar-color); /* Card background */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Padding inside the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for card effect */
+}
+
+.neww-activity .neww-data .neww-data-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px; /* Space below the title */
+}
+
+.neww-activity .neww-data .neww-data-list {
+    font-size: 16px;
+    color: var(--text-color);
+    margin-bottom: 5px; /* Space between list items */
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
     nav.neww-sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-        border: none;
+        width: 60px; /* Adjusted width for small screens */
     }
 
     nav.neww-sidebar.neww-closed {
-        width: 100%;
+        width: 60px;
     }
 
     .neww-dashboard {
-        margin-left: 0;
-        width: 100%;
+        margin-left: 60px;
+        width: calc(100% - 60px);
     }
 
-    nav.neww-sidebar .neww-menu-items {
-        flex-direction: row;
-        overflow-x: auto;
-    }
-
-    nav.neww-sidebar .neww-menu-items li {
-        flex: 1;
-    }
-
-    .neww-dash-content .neww-boxes {
-        flex-direction: column;
-    }
-
-    .neww-dash-content .neww-boxes .neww-box {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-}
-
-@media (max-width: 576px) {
-    .neww-dashboard .neww-top {
-        flex-direction: column;
+    .neww-dashboard .neww-top .neww-sidebar-toggle {
+        font-size: 20px;
     }
 
     .neww-dashboard .neww-top .neww-search-box {
-        margin: 20px 0;
+        max-width: 100%;
+    }
+
+    .neww-dash-content .neww-boxes .neww-box {
+        width: calc(50% - 10px); /* Adjust width for smaller screens */
     }
 }

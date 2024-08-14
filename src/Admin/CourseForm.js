@@ -10,6 +10,7 @@ const CourseForm = () => {
     description: '',
     imageUrl: '',
   });
+  const [editingCourseId, setEditingCourseId] = useState(null);
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -33,22 +34,55 @@ const CourseForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:9001/courses/add', newCourse);
-      if (response.status === 200) {
-        setCourses([...courses, response.data]);
-        setNewCourse({
-          courseName: '',
-          description: '',
-          imageUrl: '',
-        });
-        setShowForm(false);
-      } else {
-        console.error('Failed to add course');
+    
+    if (editingCourseId) {
+      try {
+        const response = await axios.put(`http://localhost:9001/courses/${editingCourseId}`, newCourse);
+        if (response.status === 200) {
+          setCourses(courses.map((course) =>
+            course.id === editingCourseId ? response.data : course
+          ));
+          setEditingCourseId(null);
+          setNewCourse({
+            courseName: '',
+            description: '',
+            imageUrl: '',
+          });
+          setShowForm(false);
+        } else {
+          console.error('Failed to update course');
+        }
+      } catch (error) {
+        console.error('Error updating course:', error);
       }
-    } catch (error) {
-      console.error('Error:', error);
+    } else {
+      try {
+        const response = await axios.post('http://localhost:9001/courses/add', newCourse);
+        if (response.status === 200) {
+          setCourses([...courses, response.data]);
+          setNewCourse({
+            courseName: '',
+            description: '',
+            imageUrl: '',
+          });
+          setShowForm(false);
+        } else {
+          console.error('Failed to add course');
+        }
+      } catch (error) {
+        console.error('Error adding course:', error);
+      }
     }
+  };
+
+  const handleEditClick = (course) => {
+    setNewCourse({
+      courseName: course.courseName,
+      description: course.description,
+      imageUrl: course.imageUrl,
+    });
+    setEditingCourseId(course.id);
+    setShowForm(true);
   };
 
   const handleDelete = async (id) => {
@@ -57,17 +91,6 @@ const CourseForm = () => {
       setCourses(courses.filter((course) => course.id !== id));
     } catch (error) {
       console.error('Error deleting course:', error);
-    }
-  };
-
-  const handleUpdate = async (id, updatedCourse) => {
-    try {
-      await axios.put(`http://localhost:9001/courses/${id}`, updatedCourse);
-      setCourses(
-        courses.map((course) => (course.id === id ? { ...course, ...updatedCourse } : course))
-      );
-    } catch (error) {
-      console.error('Error updating course:', error);
     }
   };
 
@@ -80,7 +103,7 @@ const CourseForm = () => {
             <h3>{course.courseName}</h3>
             <p>{course.description}</p>
             <button onClick={() => handleDelete(course.id)}>Delete</button>
-            <button onClick={() => handleUpdate(course.id, newCourse)}>Update</button>
+            <button onClick={() => handleEditClick(course)}>Update</button>
           </div>
         ))}
 
@@ -93,7 +116,7 @@ const CourseForm = () => {
         <div className="modal-overlay" onClick={() => setShowForm(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <form onSubmit={handleSubmit} className="course-form">
-              <h2>Add a New Course</h2>
+              <h2>{editingCourseId ? 'Update Course' : 'Add a New Course'}</h2>
               <input
                 type="text"
                 name="courseName"
@@ -118,7 +141,7 @@ const CourseForm = () => {
                 onChange={handleChange}
                 required
               />
-              <button type="submit">Add Course</button>
+              <button type="submit">{editingCourseId ? 'Update Course' : 'Add Course'}</button>
               <button type="button" onClick={() => setShowForm(false)}>Cancel</button>
             </form>
           </div>

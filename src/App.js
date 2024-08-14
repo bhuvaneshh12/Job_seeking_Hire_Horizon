@@ -1,3 +1,4 @@
+// src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import AdminDashboard from './Admin/AdminDashboard';
@@ -12,11 +13,12 @@ import JobListing from './Job/JobListing';
 import HomePage from './Home/HomePage';
 import AdminLogin from './Admin/Adminlogin';
 import Navbar from './Navbar/Nav1';
-import Footer1 from './Footer/footer1';
+import Footer1 from './Footer/footer1'; // Ensure the correct path
 import ApplicantsPage from './Admin/ApplicationPage';
 import RemoveJob from './Admin/Removejob';
 import CourseForm from './Admin/CourseForm';
 import AddCompanyForm from './Admin/AddCompanyForm'; // Import the AddCompanyForm component
+import CardPage from './Course/CardPage';
 import './App.css';
 
 function App() {
@@ -34,7 +36,8 @@ function App() {
           <Route path="/register" element={<CreateAccount />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/about" element={<AboutUs />} />
-          <Route path="/courses" element={<CourseSelection />} />
+          <Route path="/courses" element={<CardPage />} />
+          <Route path="/course-selection" element={<CourseSelection />} /> {/* Added route for CourseSelection */}
           <Route path="/job-listing" element={<JobListing />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/admin-login" element={<AdminLogin />} />

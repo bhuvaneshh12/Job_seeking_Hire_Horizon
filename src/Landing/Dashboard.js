@@ -21,25 +21,29 @@ const Company = () => {
         resumeHeadline: '',
         resumeFile: null
     });
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
+    // New states for filters
+    const [salaryFilter, setSalaryFilter] = useState([]);
+    const [locationFilter, setLocationFilter] = useState([]);
 
     useEffect(() => {
-        // Fetch the company data from the backend when the component mounts
         axios.get('http://localhost:9001/companies')
             .then(response => {
                 setCompanies(response.data);
-                setFilteredCompanies(response.data); // Initialize filteredCompanies with all companies
+                setFilteredCompanies(response.data);
             })
             .catch(error => {
                 console.error("There was an error fetching the company data!", error);
             });
     }, []);
 
-    const handleSearch = (e) => {
-        const term = e.target.value.toLowerCase();
-        setSearchTerm(term);
+    const handleSearch = () => {
         setFilteredCompanies(
             companies.filter((company) =>
-                company.name.toLowerCase().includes(term)
+                company.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+                (salaryFilter.length === 0 || salaryFilter.includes(company.salaryRange)) &&
+                (locationFilter.length === 0 || locationFilter.includes(company.location))
             )
         );
     };
@@ -47,6 +51,7 @@ const Company = () => {
     const handleApply = (company) => {
         setCurrentCompany(company);
         setIsApplyModalOpen(true);
+        setIsSubmitted(false);
     };
 
     const handleFormChange = (e) => {
@@ -78,20 +83,8 @@ const Company = () => {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-            alert('Application submitted successfully!');
+            setIsSubmitted(true);
             setIsApplyModalOpen(false);
-            setApplicationForm({
-                fullname: '',
-                email: '',
-                role: '',
-                gender: '',
-                age: '',
-                education: '',
-                experience: '',
-                location: '',
-                resumeHeadline: '',
-                resumeFile: null
-            });
         } catch (error) {
             console.error("There was an error submitting the application!", error);
         }
@@ -113,51 +106,163 @@ const Company = () => {
         });
     };
 
+    const handleSalaryChange = (e) => {
+        const value = e.target.value;
+        setSalaryFilter(
+            e.target.checked
+                ? [...salaryFilter, value]
+                : salaryFilter.filter((salary) => salary !== value)
+        );
+    };
+
+    const handleLocationChange = (e) => {
+        const value = e.target.value;
+        setLocationFilter(
+            e.target.checked
+                ? [...locationFilter, value]
+                : locationFilter.filter((location) => location !== value)
+        );
+    };
+
     return (
-        <div className="company-page">
-            <h1 className="page-title">Company Listings</h1>
-            <div className="company-list">
-                <div className="search-container">
-                    <SearchIcon className="search-icon" />
-                    <input
-                        type="text"
-                        placeholder="Search by name..."
-                        value={searchTerm}
-                        onChange={handleSearch}
-                        className="search-bar"
-                    />
-                </div>
-                <div className="company-cards">
-                    {filteredCompanies.map((company) => (
-                        <div key={company.id} className="company-card">
-                            <img
-                                src={company.imageUrl}
-                                alt={company.name}
-                                className="company-image"
+        <div className="bhu-page">
+            <h1 className="bhu-title">Company Listings</h1>
+            <div className="bhu-container">
+                {/* Sidebar */}
+                <div className="bhu-sidebar">
+                    <h2>Filters</h2>
+                    <div className="bhu-filter-group">
+                        <h3>Salary Range</h3>
+                        <label>
+                            <input
+                                type="checkbox"
+                                value="0-50k"
+                                onChange={handleSalaryChange}
                             />
-                            <div className="company-details">
-                                <h2>{company.name}</h2>
-                                <p>{company.description}</p>
-                                <span className="company-rating">
-                                    Rating: {company.rating}
-                                </span>
-                                <button onClick={() => handleApply(company)} className="apply-button">
-                                    Apply
-                                </button>
+                            ₹30,000- ₹50,000 INR
+                        </label>
+                        <label>
+                            <input
+                                type="checkbox"
+                                value="50k-100k"
+                                onChange={handleSalaryChange}
+                            />
+                            ₹50,000- ₹100,000 INR
+                        </label>
+                        <label>
+                            <input
+                                type="checkbox"
+                                value="100k-150k"
+                                onChange={handleSalaryChange}
+                            />
+                            ₹100,000- ₹150,000 INR
+                        </label>
+                        <label>
+                            <input
+                                type="checkbox"
+                                value="150k+"
+                                onChange={handleSalaryChange}
+                            />
+                            ₹150,000+ INR
+                        </label>
+                    </div>
+                    <div className="bhu-filter-group">
+                        <h3>Location</h3>
+                        <label>
+                            <input
+                                type="checkbox"
+                                value="Chennai"
+                                onChange={handleLocationChange}
+                            />
+                            Chennai
+                        </label>
+                        <label>
+                            <input
+                                type="checkbox"
+                                value="Pune"
+                                onChange={handleLocationChange}
+                            />
+                            Pune
+                        </label>
+                        <label>
+                            <input
+                                type="checkbox"
+                                value="Bangalore"
+                                onChange={handleLocationChange}
+                            />
+                            Bangalore
+                        </label>
+                        <label>
+                            <input
+                                type="checkbox"
+                                value="Mumbai"
+                                onChange={handleLocationChange}
+                            />
+                            Mumbai
+                        </label>
+                    </div>
+                    <button
+                        onClick={handleSearch}
+                        className="bhu-filter-button"
+                    >
+                        Apply Filters
+                    </button>
+                </div>
+
+                {/* Main Content */}
+                <div className="bhu-list">
+                    <div className="bhu-search-container">
+                        <input
+                            type="text"
+                            placeholder="Search by name..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="bhu-search-bar"
+                        />
+                        <button
+                            onClick={handleSearch}
+                            className="bhu-search-button"
+                        >
+                            <SearchIcon />
+                        </button>
+                    </div>
+                    <br/>
+                    <div className="bhu-cards">
+                        {filteredCompanies.map((company) => (
+                            <div key={company.id} className="bhu-card">
+                                <img
+                                    src={company.imageUrl}
+                                    alt={company.name}
+                                    className="bhu-image"
+                                />
+                                <div className="bhu-details">
+                                    <h2>{company.name}</h2>
+                                    <p>{company.description}</p>
+                                    <span className="bhu-rating">
+                                        Rating: {company.rating}
+                                    </span>
+                                    <span className="bhu-salary">
+                                        Salary: {company.salaryRange}
+                                    </span>
+                                    <button onClick={() => handleApply(company)} className="bhu-button">
+                                        Apply
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             </div>
 
             {/* Apply Form Modal */}
             {isApplyModalOpen && (
-                <div className="modal">
-                    <div className="modal-content">
-                        <span className="close" onClick={closeModal}>&times;</span>
+                <div className="bhu-modal">
+                    <div className="bhu-modal-content">
+                        <span className="bhu-close" onClick={closeModal}>&times;</span>
                         <h2>Apply for {currentCompany?.name}</h2>
-                        <form onSubmit={handleSubmit} className="apply-form">
-                            <div className="form-group">
+                        <form onSubmit={handleSubmit} className="bhu-apply-form">
+                            {/* Form fields remain unchanged */}
+                            <div className="bhu-form-group">
                                 <label htmlFor="fullname">Full Name:</label>
                                 <input
                                     type="text"
@@ -168,7 +273,7 @@ const Company = () => {
                                     required
                                 />
                             </div>
-                            <div className="form-group">
+                            <div className="bhu-form-group">
                                 <label htmlFor="email">Email:</label>
                                 <input
                                     type="email"
@@ -179,7 +284,7 @@ const Company = () => {
                                     required
                                 />
                             </div>
-                            <div className="form-group">
+                            <div className="bhu-form-group">
                                 <label htmlFor="role">Role:</label>
                                 <input
                                     type="text"
@@ -190,7 +295,7 @@ const Company = () => {
                                     required
                                 />
                             </div>
-                            <div className="form-group">
+                            <div className="bhu-form-group">
                                 <label htmlFor="gender">Gender:</label>
                                 <select
                                     id="gender"
@@ -205,7 +310,7 @@ const Company = () => {
                                     <option value="other">Other</option>
                                 </select>
                             </div>
-                            <div className="form-group">
+                            <div className="bhu-form-group">
                                 <label htmlFor="age">Age:</label>
                                 <input
                                     type="number"
@@ -216,7 +321,7 @@ const Company = () => {
                                     required
                                 />
                             </div>
-                            <div className="form-group">
+                            <div className="bhu-form-group">
                                 <label htmlFor="education">Education:</label>
                                 <input
                                     type="text"
@@ -227,7 +332,7 @@ const Company = () => {
                                     required
                                 />
                             </div>
-                            <div className="form-group">
+                            <div className="bhu-form-group">
                                 <label htmlFor="experience">Experience:</label>
                                 <input
                                     type="text"
@@ -238,7 +343,7 @@ const Company = () => {
                                     required
                                 />
                             </div>
-                            <div className="form-group">
+                            <div className="bhu-form-group">
                                 <label htmlFor="location">Location:</label>
                                 <input
                                     type="text"
@@ -249,7 +354,7 @@ const Company = () => {
                                     required
                                 />
                             </div>
-                            <div className="form-group">
+                            <div className="bhu-form-group">
                                 <label htmlFor="resumeHeadline">Resume Headline:</label>
                                 <input
                                     type="text"
@@ -260,8 +365,8 @@ const Company = () => {
                                     required
                                 />
                             </div>
-                            <div className="form-group">
-                                <label htmlFor="resumeFile">Resume File:</label>
+                            <div className="bhu-form-group">
+                                <label htmlFor="resumeFile">Upload Resume:</label>
                                 <input
                                     type="file"
                                     id="resumeFile"
@@ -270,7 +375,9 @@ const Company = () => {
                                     required
                                 />
                             </div>
-                            <button type="submit" className="submit-button">Submit Application</button>
+                            <button type="submit" className="bhu-submit-button">
+                                Submit Application
+                            </button>
                         </form>
                     </div>
                 </div>

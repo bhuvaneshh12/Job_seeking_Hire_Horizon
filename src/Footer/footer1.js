@@ -1,56 +1,72 @@
 import React from 'react';
 import './footer1.css';
-import logo from './logo.jpg'; // Make sure the path is correct
+import { Grid, Typography, Link, IconButton } from '@mui/material';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import Logo from './logo.jpg';  // Import the logo
 
-const Footer1 = () => {
-    return (
-        <>
-            <div className="Footer">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-6 col-lg-5 col-12 ft-1">
-                            <img src={logo} alt="EmpowerU Logo" className="footer-logo" />
-                            <h3><span>Find Your Dream Job with </span>HireHorizon</h3>
-                            <p>
-                            Explore thousands of job opportunities across various industries and connect with top employers.<br/> Whether you're a fresh graduate or an experienced professional, HireHorizon is here to help you take the next step in your career.<br/> Join us today and start your journey to success!<br /> </p>
-                            <div className="footer-icons">
-                                <i className="fa-brands fa-facebook"></i>
-                                <i className="fa-brands fa-twitter"></i>
-                                <i className="fa-brands fa-instagram"></i>
-                                <i className="fa-brands fa-linkedin-in"></i>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-3 col-12 ft-2">
-                            <h5>Quick Links</h5>
-                            <ul>
-                                <li className="nav-item">
-                                    <a className="" href="/">Home</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="" href="/">Create a project</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="" href="/">All Projects</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="" href="/">Services</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="" href="/">Contact Us</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div className="col-md-6 col-lg-4 col-12 ft-3">
-                            <h5>Contact Us</h5>
-                            <p><i className="fa-solid fa-phone-volume"></i> +91 173314</p>
-                            <p><i className="fa-solid fa-envelope"></i> bhuvibhuvanesh530@gmail.com</p>
-                            <p><i className="fa-solid fa-paper-plane"></i> Coimbatore, India</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </>
-    );
-}
+const Footer = () => {
+  return (
+    <div className="footer">
+      <Grid container spacing={3}>
+        {/* Logo Section */}
+        <Grid item xs={12} md={4} className="footer-logo">
+          <img src={Logo} alt="Logo" className="footer-logo-img" />
+          <Typography variant="body2" className="footer-logo-description">
+          Explore thousands of job opportunities across various industries and connect with top employers.
+          </Typography>
+        </Grid>
 
-export default Footer1;
+        {/* Quick Links Section */}
+        <Grid item xs={12} md={4} className="footer-links">
+          <Typography variant="h6" gutterBottom>
+            Quick Links
+          </Typography>
+          <Link to="/home">
+            Home
+          </Link><br/>
+          <Link to="/job-listing">
+            Jobs
+          </Link><br/>
+          <Link to="/courses">
+            Services
+          </Link><br/>
+          <Link to="/about">
+            About Us
+          </Link><br/>
+        </Grid>
+
+        {/* Contact Information and Social Media Icons */}
+        <Grid item xs={12} md={4} className="footer-contact">
+          <Typography variant="h6" gutterBottom>
+            Contact Us
+          </Typography>
+          <Typography variant="body1" className="footer-contact-info">
+            Sri Krishna college of Technology<br />
+            Kovaipudur,Coimbatore.<br />
+            Email: bhuvibhuvanesh@gmail.com.<br />
+            Phone: 9150303519.
+          </Typography>
+          <div className="footer-social-icons">
+            <IconButton href="#" color="inherit">
+              <FacebookIcon />
+            </IconButton>
+            <IconButton href="#" color="inherit">
+              <TwitterIcon />
+            </IconButton>
+            <IconButton href="#" color="inherit">
+              <InstagramIcon />
+            </IconButton>
+            <IconButton href="#" color="inherit">
+              <LinkedInIcon />
+            </IconButton>
+          </div>
+        </Grid>
+      </Grid>
+    </div>
+  );
+};
+
+export default Footer;

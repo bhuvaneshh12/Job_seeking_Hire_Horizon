@@ -2,13 +2,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Nav1.css';
-import logo from './logo2.jpeg'; // Import your logo image
+// import logo from './logo2.jpeg'; // Import your logo image
 
 const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <img src={logo} alt="Hire Horizon Logo" className="navbar-logo-icon" />
+        {/* <img src={logo} alt="Hire Horizon Logo" className="navbar-logo-icon" /> */}
         <Link to="/" className="navbar-website-name">HireHorizon</Link>
       </div>
       <ul className="navbar-links">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './AddCompanyForm.css';
 
@@ -10,9 +10,24 @@ const AddCompanyForm = () => {
         imageUrl: ''
     });
 
+    const [companies, setCompanies] = useState([]);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
     const [editData, setEditData] = useState(null);
+
+    useEffect(() => {
+        // Fetch companies from the database on component load
+        const fetchCompanies = async () => {
+            try {
+                const response = await axios.get('http://localhost:9001/companies');
+                setCompanies(response.data);
+            } catch (error) {
+                console.error("There was an error fetching the companies!", error);
+            }
+        };
+
+        fetchCompanies();
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -26,8 +41,7 @@ const AddCompanyForm = () => {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:9001/companies/add', companyData);
-            console.log(response.data);
-            // Optionally clear the form after submission
+            setCompanies([...companies, response.data]); // Add the new company to the state
             setCompanyData({
                 name: '',
                 description: '',
@@ -44,7 +58,9 @@ const AddCompanyForm = () => {
         e.preventDefault();
         try {
             const response = await axios.put(`http://localhost:9001/companies/${editData.id}`, companyData);
-            console.log(response.data);
+            setCompanies(companies.map(company => 
+                company.id === editData.id ? response.data : company
+            )); // Update the company in the state
             setIsUpdateModalOpen(false); // Close the modal
         } catch (error) {
             console.error("There was an error updating the company!", error);
@@ -52,6 +68,13 @@ const AddCompanyForm = () => {
     };
 
     const openAddModal = () => {
+        // Reset companyData when opening the "Add Company" modal
+        setCompanyData({
+            name: '',
+            description: '',
+            rating: '',
+            imageUrl: ''
+        });
         setIsAddModalOpen(true);
     };
 
@@ -64,6 +87,7 @@ const AddCompanyForm = () => {
     const handleDelete = async (id) => {
         try {
             await axios.delete(`http://localhost:9001/companies/${id}`);
+            setCompanies(companies.filter(company => company.id !== id)); // Remove the company from the state
             console.log("Company deleted");
         } catch (error) {
             console.error("There was an error deleting the company!", error);
@@ -75,21 +99,16 @@ const AddCompanyForm = () => {
             <h2 className="form-title">Manage Companies</h2>
             <br/><br/><br/>
             <div className="company-cards-container">
-                {/* Example company cards */}
-                <div className="company-card">
-                    <img src="https://via.placeholder.com/300x150?text=Tech+Co." alt="Tech Co." className="company-image" />
-                    <h3>Tech Co.</h3>
-                    <p>A leading tech company.</p>
-                    <span className="company-rating">Rating: 4.5</span>
-                    <button onClick={() => openUpdateModal({
-                        id: 1,
-                        name: 'Tech Co.',
-                        description: 'A leading tech company.',
-                        rating: '4.5',
-                        imageUrl: 'https://via.placeholder.com/300x150?text=Tech+Co.'
-                    })} className="edit-button">Edit</button>
-                    <button onClick={() => handleDelete(1)} className="delete-button">Delete</button>
-                </div>
+                {companies.map(company => (
+                    <div className="company-card" key={company.id}>
+                        <img src={company.imageUrl} alt={company.name} className="company-image" />
+                        <h3>{company.name}</h3>
+                        <p>{company.description}</p>
+                        <span className="company-rating">Rating: {company.rating}</span>
+                        <button onClick={() => openUpdateModal(company)} className="edit-button">Edit</button>
+                        <button onClick={() => handleDelete(company.id)} className="delete-button">Delete</button>
+                    </div>
+                ))}
 
                 {/* "+" Card */}
                 <div className="company-card add-card" onClick={openAddModal}>

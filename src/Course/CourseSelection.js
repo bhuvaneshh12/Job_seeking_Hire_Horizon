@@ -1,4 +1,3 @@
-// CourseSection.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './CourseSelection.css';
@@ -21,6 +20,7 @@ const CourseSection = () => {
 
   return (
     <div className="container">
+      <h2 className="header">Courses We Offer</h2>
       {courses.map((course) => (
         <div className="card" key={course.id}>
           <img src={course.imageUrl} alt={course.courseName} />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Landing.css';
-import logo from './logo.jpg'; // Ensure you have a logo image in this path
+// import logo from './logo.jpg'; // Ensure you have a logo image in this path
 import backgroundVideo from './video.mp4'; // Ensure you have a video file in this path
 
 const Landing = () => {
@@ -19,7 +19,7 @@ const Landing = () => {
         Your browser does not support the video tag.
       </video>
       <div className="content-container">
-        <img src={logo} alt="Hire Horizon Logo" className="logo" />
+        {/* <img src={logo} alt="Hire Horizon Logo" className="logo" /> */}
         <header className="landing-header">
           <h1>Hire Horizon</h1>
           <p>Welcome to Job Seeker's Portal</p>

@@ -23,7 +23,7 @@ const AboutUs = () => {
         <div className="profile">
           <img src={profile} alt="Chris Spring" />
           <h3>Chris Spring</h3>
-          <p>CEO & Founder</p>
+          <p>Mikey</p>
         </div>
       </section>
     </div>

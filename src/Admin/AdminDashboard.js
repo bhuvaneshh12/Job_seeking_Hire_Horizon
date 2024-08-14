@@ -61,22 +61,19 @@ function AdminDashboard() {
           <span className="neww-logo_name">Admin Dashboard</span>
         </div>
         <ul className="neww-menu-items">
-          <li><Link to="/"><HomeIcon /><span className="neww-link-name">Home</span></Link></li>
+          {/* <li><Link to="/"><HomeIcon /><span className="neww-link-name">Home</span></Link></li> */}
           <li><Link to="#"><AccountCircleIcon /><span className="neww-link-name">Profile</span></Link></li>
-          <li>
-            <span onClick={toggleJobManagement}>
-              <WorkIcon /><span className="neww-link-name">Job Management</span>
-            </span>
-            {isJobManagementOpen && (
+          <li><Link to="/add-job"><WorkIcon /><span className="neww-link-name">Job Management</span></Link>
+            {/* {isJobManagementOpen && (
               <ul className="neww-submenu">
                 <li><Link to="/add-job">Add Job</Link></li>
-                <li><Link to="/remove-job">Remove Job</Link></li>
-              </ul>
-            )}
+                <li><Link to="/remove-job">Remove Job</Link></li> */}
+              {/* </ul> */}
+            {/* )} */}
           </li>
-          <li><span onClick={navigateToCourseForm}><SettingsIcon /><span className="neww-link-name">Service Management</span></span></li>
+          <li><Link to="/service-management"><SettingsIcon /><span className="neww-link-name">Service Management</span></Link></li>
           <li><Link to="/company-management"><SettingsIcon /><span className="neww-link-name">Company Management</span></Link></li>
-          <li><span onClick={handleLogout}><LogoutIcon /><span className="neww-link-name">Logout</span></span></li>
+          <li><Link to="/admin-login"><LogoutIcon /><span className="neww-link-name">Logout</span></Link></li>
         </ul>
         <div className="neww-mode-toggle">
           <span>{isDarkMode ? <Brightness4Icon /> : <Brightness7Icon />}</span>
